@@ -11,20 +11,30 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "web" do |web|
     
-  config.vm.box = "ubuntu/xenial64"
-  config.vm.network "private_network", ip: "192.168.10.100"
-  config.hostsupdater.aliases = ["development.local"]
+  web.vm.box = "ubuntu/xenial64"
+  web.vm.network "private_network", ip: "192.168.10.100"
+  web.hostsupdater.aliases = ["development.local"]
 
 
   # synced app folder
-  config.vm.synced_folder ".", "/home/ubuntu/app", owner: "app", group: "app"
+  web.vm.synced_folder ".", "/home/ubuntu/app"
 
   # Provisoning
-  config.vm.provision "shell", path: "environment/provision.sh"
+  web.vm.provision "shell", path: "environment/provision.sh"
   end
 
 
   config.vm.define "db" do |db|
-    db.vm.box = "mongodb"
+	  
+    db.vm.box = "ubuntu/xenial64"
+	  db.vm.network "private_network", ip: "192.168.10.100"
+	  db.hostsupdater.aliases = ["development.local"]
+
+
+	  # synced app folder
+	  db.vm.synced_folder ".", "/home/ubuntu/app"
+
+	  # Provisoning
+	  db.vm.provision "shell", path: "environment/mogodb.sh"
   end
 end
