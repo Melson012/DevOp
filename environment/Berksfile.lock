@@ -1,0 +1,7 @@
+DEPENDENCIES
+  web
+    git: git@github.com:Melson012/Web-cookbook.git
+    revision: e9f7437d62f79f0d9347026fe4bc4a26dd97c5f7
+
+GRAPH
+  web (0.1.0)

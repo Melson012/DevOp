@@ -1,0 +1,11 @@
+DEPENDENCIES
+  db
+    git: git@github.com:Melson012/Db-cookbook.git
+    revision: e5f784cd66b7af2824fc112d2a663057c0ef3744
+  web
+    git: git@github.com:Melson012/Web-cookbook.git
+    revision: e9f7437d62f79f0d9347026fe4bc4a26dd97c5f7
+
+GRAPH
+  db (0.4.3)
+  web (0.1.0)

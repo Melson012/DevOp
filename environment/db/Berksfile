@@ -1,0 +1,3 @@
+source 'https://supermarket.chef.io'
+
+cookbook 'db', git: 'git@github.com:Melson012/Db-cookbook.git'
