@@ -71,12 +71,26 @@ resource "aws_security_group" "db_security" {
   }
 }
 
+data "aws_ami" "web" {
+  filter {
+    name   = "state"
+    values = ["available"]
+  }
+
+  filter {
+    name   = "name"
+    values = ["Melson-web-prod*"]
+  }
+
+  most_recent = true
+}
+
 data "template_file" "init_script" {
   template = "${file("${path.module}/init.sh")}"
 } 
 
 resource "aws_instance" "web" {
-  ami           = "ami-03dccf67"
+  ami           = "${data.aws_ami.web.id}"
   instance_type = "t2.micro"
   vpc_security_group_ids =["${aws_security_group.Web-melson.id}"]
   subnet_id ="${aws_subnet.web.id}"
